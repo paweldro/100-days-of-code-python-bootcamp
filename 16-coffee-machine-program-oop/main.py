@@ -19,7 +19,7 @@ while True:
     else:
         continue
 
-    if money.make_payment(drink.cost) and coffee.is_resource_sufficient(drink):
+    if coffee.is_resource_sufficient(drink) and money.make_payment(drink.cost):
         coffee.make_coffee(drink)
     else:
         continue
