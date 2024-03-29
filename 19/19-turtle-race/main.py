@@ -39,6 +39,4 @@ while True:
     if turtle_win:
         break
 
-
-
 screen.exitonclick()
