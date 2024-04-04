@@ -48,3 +48,11 @@ class Snake:
         new_segment.color("white")
         new_segment.goto(self.snake_body[0].position())
         self.snake_body.insert(0, new_segment)
+
+    def reset(self):
+        for segment in self.snake_body:
+            segment.hideturtle()
+            segment.clear()
+        self.snake_body.clear()
+        for position in STARTING_POSITIONS:
+            self.add_segment(position)
