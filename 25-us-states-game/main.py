@@ -18,10 +18,9 @@ all_states = state_data.state.to_list()
 missing_states = []
 while len(guessed_state) < 50:
     user_state = screen.textinput(title=f"{len(guessed_state)}/50", prompt="Enter state: ")
+
     if user_state.lower() == "exit":
-        for state in all_states:
-            if state not in guessed_state:
-                missing_states.append(state)
+        missing_states = [state for state in all_states if state not in guessed_state]
         missing_states_dataframe = pandas.DataFrame(missing_states)
         missing_states_dataframe.to_csv("missing_states.csv")
         break
