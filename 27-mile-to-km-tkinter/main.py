@@ -12,7 +12,6 @@ def calc_button_clicked():
 
 window = tkinter.Tk()
 window.title("Mile to Km Converter")
-window.minsize(width=600, height=600)
 window.config(padx=10, pady=10)
 
 miles_input = tkinter.Entry(width=10)
