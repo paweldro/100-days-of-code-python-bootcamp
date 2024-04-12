@@ -9,5 +9,9 @@ while program_running:
     if user_input.lower() == "exit":
         program_running = False
     else:
-        result = [nato_dict[letter.upper()] for letter in user_input]
-        print(result)
+        try:
+            result = [nato_dict[letter.upper()] for letter in user_input]
+        except KeyError:
+            print("Sorry, only letters in the alphabet please.")
+        else:
+            print(result)
