@@ -18,7 +18,7 @@ except pandas.errors.EmptyDataError:
 
 words_to_learn_dict = words_to_learn_data_frame.to_dict(orient="records")
 
-current_card = random.choice(words_dict)
+current_card = random.choice(words_to_learn_dict)
 print(len(words_to_learn_dict))
 
 
@@ -49,13 +49,10 @@ def new_word():
 
 
 def right_button_on_click():
-    word_dict = {'French': current_card["French"], 'English': current_card["English"]}
-    for word in words_to_learn_dict:
-        if word["French"] == word_dict["French"]:
-            words_to_learn_dict.remove(word)
-
-    new_words_to_learn_data_frame = pandas.DataFrame(words_to_learn_dict)
-    new_words_to_learn_data_frame.to_csv("./data/french_words_to_learn.csv", index=False)
+    if len(words_to_learn_dict) != 0:
+        words_to_learn_dict.remove(current_card)
+        new_words_to_learn_data_frame = pandas.DataFrame(words_to_learn_dict)
+        new_words_to_learn_data_frame.to_csv("./data/french_words_to_learn.csv", index=False)
 
     new_word()
 
