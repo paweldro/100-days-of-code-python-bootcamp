@@ -1,5 +1,9 @@
+import html
+
+
 class Quiz:
     def __init__(self, q_list):
+        self.current_question = None
         self.question_number = 0
         self.question_list = q_list
         self.score = 0
@@ -8,22 +12,17 @@ class Quiz:
         return self.question_number < len(self.question_list)
 
     def next_question(self):
-        user_answer = input(f"Q.{self.question_number + 1}: {self.question_list[self.question_number].text} (True"
-                            f"/False)?:")
-        if user_answer.lower() != "false" and user_answer.lower() != "true":
-            print("Wrong answer format. Answer only True/False!")
-            print()
 
-        else:
-            self.check_answer(user_answer, self.question_list[self.question_number].answer)
+        if self.still_has_question():
+            self.current_question = self.question_list[self.question_number]
+            q_text = f"Q.{self.question_number + 1}: {html.unescape(self.current_question.text)}"
             self.question_number += 1
+            return q_text                                                           
 
-    def check_answer(self, user_answer, question_answer):
-        if user_answer.lower() == question_answer.lower():
-            print("You got it right!")
+    def check_answer(self, user_answer: str) -> bool:
+        if user_answer == self.current_question.answer:
             self.score += 1
+            return True
         else:
-            print("That's wrong.")
-        print(f"The correct answer was: {question_answer}.")
-        print(f"Your current score is: {self.score}/{len(self.question_list)}")
-        print("\n")
+            return False
+

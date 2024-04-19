@@ -1,7 +1,7 @@
 from question_model import Question
 from data import question_data
 from quiz_brain import Quiz
-
+from ui import QuizInterface
 question_bank = []
 for question in question_data:
     q = Question(question["question"], question["correct_answer"])
@@ -9,7 +9,5 @@ for question in question_data:
 
 quiz = Quiz(question_bank)
 
-while quiz.still_has_question():
-    quiz.next_question()
+quiz_ui = QuizInterface(quiz)
 
-print(f"You've completed the quiz.\nYour final score was: {quiz.score}/{len(quiz.question_list)}")
